@@ -109,7 +109,9 @@ export default function App() {
           <div className="flex items-center gap-2 cursor-pointer" onClick={() => scrollTo('intro')}>
             <Activity className="text-blue-600 w-6 h-6" />
             <div className="flex flex-col">
-              <span className="font-black text-slate-900 text-sm leading-none uppercase tracking-tighter">Medical AI</span>
+              <span className="font-black text-slate-900 text-sm leading-none uppercase tracking-tighter">
+                <span className="italic mr-1.5 opacity-80">ASIAN2U</span>MEDICAL AI
+              </span>
               <span className="text-[9px] font-bold text-blue-500 uppercase tracking-widest">INDOPACOM Strategic Proposal</span>
             </div>
           </div>
@@ -352,9 +354,10 @@ export default function App() {
       {/* Footer */}
       <footer className="bg-slate-950 py-20 px-4 text-center border-t border-slate-900">
         <div className="max-w-7xl mx-auto space-y-8">
-          <div className="flex justify-center items-center gap-2">
+          <div className="flex justify-center items-center gap-2 text-white">
             <Activity className="text-blue-600 w-8 h-8" />
-            <span className="text-3xl font-black text-white italic tracking-tighter">MEDICAL AI</span>
+            <span className="text-3xl font-black italic tracking-tighter mr-1">ASIAN2U</span>
+            <span className="text-3xl font-black tracking-tighter">MEDICAL AI</span>
           </div>
           <div className="flex flex-wrap justify-center gap-8 text-[10px] font-black text-slate-600 uppercase tracking-[0.3em]">
              <span>FDA REGISTERED</span>
@@ -365,7 +368,7 @@ export default function App() {
             Medical AI: Defending the heart of the INDOPACOM mission. Protecting pilots, crews, and command assets through the world's most advanced cardiac intelligence.
           </p>
           <div className="pt-8 border-t border-slate-900 text-[10px] text-slate-700 font-bold">
-            © 2025 MEDICAL AI. STRATEGIC PROPOSAL FOR USFK/USFJ/INDOPACOM LEADERSHIP.
+            © 2026 ASIAN2U & MEDICAL AI. STRATEGIC PROPOSAL FOR USFK/USFJ/INDOPACOM LEADERSHIP.
           </div>
         </div>
       </footer>
