@@ -6,7 +6,7 @@ import {
 } from 'recharts';
 import { 
   Activity, ShieldCheck, DollarSign, Clock, Zap, 
-  Menu, X, Info, Target, Landmark, ChevronRight, UserCheck, AlertTriangle
+  Menu, X, Info, Target, Landmark, ChevronRight, UserCheck, AlertTriangle, Plane, Anchor, Radio
 } from 'lucide-react';
 
 // --- Components ---
@@ -27,9 +27,9 @@ const AudienceBadge: React.FC<{ type: 'clinician' | 'management' | 'readiness'; 
     readiness: "bg-orange-50 text-orange-700 border-orange-200"
   };
   const labels = {
-    clinician: "Medical Corps (Senior Officers)",
-    management: "Command Leadership (USFK/USFJ)",
-    readiness: "Readiness Operations (G-1/G-4)"
+    clinician: "Medical Corps (Senior Specialists)",
+    management: "Command Leadership (Strategic Assets)",
+    readiness: "Operational Readiness (Personnel)"
   };
   return (
     <div className={`p-3 rounded-lg border ${styles[type]} mb-2 text-[11px] md:text-xs`}>
@@ -59,7 +59,7 @@ const Section: React.FC<{
         </div>
         <div className="space-y-3">
           <h4 className="text-xs font-bold text-slate-400 uppercase flex items-center gap-2">
-            <Target className="w-4 h-4" /> Tactical Value Props
+            <Target className="w-4 h-4" /> Strategic Value Props
           </h4>
           <AudienceBadge type="management" content={audiencePoints.management} />
           <AudienceBadge type="readiness" content={audiencePoints.readiness} />
@@ -148,19 +148,19 @@ export default function App() {
               <Landmark className="w-3 h-3" /> USFK • USFJ • INDOPACOM
             </div>
             <h1 className="text-5xl md:text-8xl font-black leading-[0.95] tracking-tighter">
-              Ready <span className="text-blue-500">Leaders</span><br/>Secure Mission
+              Protect the <span className="text-blue-500 italic underline decoration-blue-500/50">Core</span><br/>Secure the Force
             </h1>
             <p className="text-lg md:text-xl text-slate-400 leading-relaxed max-w-xl">
-              Protecting high-value command assets (Ages 40+) and pre-identifying non-deployable risks to eliminate mission-critical failures.
+              Precision AI-ECG screening for Pilots, Carriers, and Submarine crews. Defending the "Decision-Making Layer" from silent cardiac failure.
             </p>
             <div className="flex flex-wrap gap-4 justify-center md:justify-start">
               <button onClick={() => scrollTo('leadership')} className="px-10 py-5 bg-blue-600 hover:bg-blue-700 text-white font-black rounded-xl transition-all flex items-center gap-2 uppercase tracking-tighter">
-                Launch Briefing <ChevronRight className="w-5 h-5" />
+                Strategic Briefing <ChevronRight className="w-5 h-5" />
               </button>
             </div>
           </div>
           
-          {/* Tactical ECG UI Replacement */}
+          {/* Tactical ECG UI Visualization */}
           <div className="relative hidden md:block group">
              <div className="absolute inset-0 bg-blue-500/20 blur-3xl rounded-full group-hover:bg-blue-500/30 transition-all duration-1000"></div>
              <div className="relative bg-slate-900 border border-slate-700 rounded-3xl overflow-hidden shadow-2xl p-6 aspect-square flex flex-col">
@@ -172,7 +172,6 @@ export default function App() {
                   <div className="text-[10px] font-bold text-slate-500">INDOPACOM_STRAT_01</div>
                 </div>
                 
-                {/* Waveform Visualization - All leads now animated */}
                 <div className="flex-1 flex flex-col justify-center gap-4">
                   {[1, 2, 3].map((leadNum, i) => (
                     <div key={i} className="h-16 relative overflow-hidden bg-slate-950/50 rounded-lg border border-slate-800/50">
@@ -216,50 +215,61 @@ export default function App() {
              
              {/* Floating Info Tags */}
              <div className="absolute -top-4 -right-4 bg-slate-800 p-4 rounded-xl border border-slate-700 shadow-xl max-w-[150px]">
-                <p className="text-[10px] font-black text-blue-400 uppercase mb-1 tracking-tighter">Command Asset</p>
-                <p className="text-[9px] text-slate-300 leading-tight">Senior Officer Profile Identified</p>
+                <p className="text-[10px] font-black text-blue-400 uppercase mb-1 tracking-tighter">Asset Identified</p>
+                <p className="text-[9px] text-slate-300 leading-tight">Carrier Strike Group Core Personnel</p>
              </div>
           </div>
         </div>
       </section>
 
-      {/* 1. High-Value Asset Protection (Senior Officers) */}
+      {/* 1. High-Value Asset Protection (Senior Officers & Specialists) */}
       <Section 
         id="leadership" 
         title="Securing High-Value Command Assets" 
-        coreMessage="Cardiac risk doubles for personnel over 40. AI-ECG identifies asymptomatic heart failure in Senior Officers and NCOs before it compromises mission command." 
-        vizDescription="Heart disease risk trajectory (Ages 20-60+). AI-ECG creates a 'Command Continuity Window' for experienced leaders aged 40-55."
+        coreMessage="Cardiac risk doubles for personnel over 40. AI-ECG protects the life-blood of the force: Senior Officers, Airforce Pilots, and Carrier/Submarine crews." 
+        vizDescription="Heart disease risk trajectory (Ages 20-60+). Highlighting the 'Command Continuity Window' where critical expertise peaks but cardiac risk spikes."
         audiencePoints={{
-          management: "Ensures command continuity by preventing sudden cardiac events in the most experienced leadership tier.",
-          readiness: "Prevents leadership voids during critical operations in INDOPACOM theater.",
-          clinician: "Enables routine screening for structural heart disease in the senior officer corps where risk spikes."
+          management: "Defends against sudden command voids in Air, Sea, and Space operations due to silent structural heart failure.",
+          readiness: "Prioritizes screening for high-cost training assets: Pilots, Aegis operators, and Nuclear submarine crews.",
+          clinician: "Enables preventative screening for high-G and high-stress environments where undetected LVSD is lethal."
         }}
       >
-        <div className="h-72 w-full">
-          <ResponsiveContainer width="100%" height="100%">
-            <BarChart data={[
-              { age: '20s', risk: 4 },
-              { age: '30s', risk: 12 },
-              { age: '40s', risk: 48, highlight: true },
-              { age: '50s+', risk: 92, highlight: true }
-            ]}>
-              <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#e2e8f0" />
-              <XAxis dataKey="age" tick={{fontSize: 12, fontWeight: 700}} axisLine={false} tickLine={false} />
-              <YAxis hide />
-              <Tooltip cursor={{fill: 'transparent'}} />
-              <Bar dataKey="risk" radius={[8, 8, 0, 0]} barSize={50}>
-                { [4,12,48,92].map((_, index) => (
-                  <Cell key={index} fill={index >= 2 ? '#2563eb' : '#cbd5e1'} />
-                ))}
-              </Bar>
-            </BarChart>
-          </ResponsiveContainer>
-        </div>
-        <div className="mt-4 p-4 bg-blue-50 rounded-xl border border-blue-100 flex items-center gap-4">
-          <AlertTriangle className="text-blue-600 w-8 h-8 shrink-0" />
-          <p className="text-xs font-bold text-blue-800 uppercase leading-snug tracking-tighter">
-            Strategic Window: 40-55 age group represents the highest concentration of Command Expertise & Cardiac Risk.
-          </p>
+        <div className="grid grid-cols-1 gap-6">
+          <div className="h-64 w-full">
+            <ResponsiveContainer width="100%" height="100%">
+              <BarChart data={[
+                { age: '20s', risk: 4 },
+                { age: '30s', risk: 12 },
+                { age: '40s', risk: 48, highlight: true },
+                { age: '50s+', risk: 92, highlight: true }
+              ]}>
+                <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#e2e8f0" />
+                <XAxis dataKey="age" tick={{fontSize: 12, fontWeight: 700}} axisLine={false} tickLine={false} />
+                <YAxis hide />
+                <Tooltip cursor={{fill: 'transparent'}} />
+                <Bar dataKey="risk" radius={[8, 8, 0, 0]} barSize={50}>
+                  { [4,12,48,92].map((_, index) => (
+                    <Cell key={index} fill={index >= 2 ? '#2563eb' : '#cbd5e1'} />
+                  ))}
+                </Bar>
+              </BarChart>
+            </ResponsiveContainer>
+          </div>
+          
+          <div className="grid grid-cols-3 gap-3">
+            <div className="p-3 bg-slate-900 rounded-xl border border-slate-800 flex flex-col items-center gap-2 text-center">
+              <Plane className="w-5 h-5 text-blue-400" />
+              <span className="text-[9px] font-black text-slate-300 uppercase leading-tight">Flight Crews<br/>(High-G)</span>
+            </div>
+            <div className="p-3 bg-slate-900 rounded-xl border border-slate-800 flex flex-col items-center gap-2 text-center">
+              <Anchor className="w-5 h-5 text-blue-400" />
+              <span className="text-[9px] font-black text-slate-300 uppercase leading-tight">Carrier Ops<br/>(Core Lead)</span>
+            </div>
+            <div className="p-3 bg-slate-900 rounded-xl border border-slate-800 flex flex-col items-center gap-2 text-center">
+              <Radio className="w-5 h-5 text-blue-400" />
+              <span className="text-[9px] font-black text-slate-300 uppercase leading-tight">Submarine<br/>(Remote)</span>
+            </div>
+          </div>
         </div>
       </Section>
 
@@ -267,24 +277,24 @@ export default function App() {
       <Section 
         id="deployment" 
         title="Ready Force: Zero Non-Deployable Risk" 
-        coreMessage="Identify 'Non-Deployable' cardiac profiles before they reach the theater. Reduce mission-critical medical attrition by 30%." 
-        vizDescription="Optimization of the deployment pipeline. AI-ECG flags high-risk personnel before they leave the home station, ensuring 100% mission-ready units."
+        coreMessage="Flag 'Non-Deployable' cardiac profiles before the ship leaves port. Prevent catastrophic MEDEVAC missions in remote INDOPACOM waters." 
+        vizDescription="Optimization of the deployment pipeline. AI-ECG flags high-risk personnel at home station, saving ~$150k per avoided deep-sea/aerial MEDEVAC."
         audiencePoints={{
-          management: "Reduces wasted logistics costs for deploying and subsequently returning unfit personnel via MEDEVAC.",
-          readiness: "Ensures every member in Role 2/3 forward clinics is cardiologically fit for high-intensity operations.",
-          clinician: "Standardizes 'Fit for Duty' assessments with objective data (AUROC 0.9+), removing clinician subjectivity."
+          management: "Eliminates the logistical nightmare of replacing key personnel mid-deployment due to cardiac emergencies.",
+          readiness: "Guarantees that 100% of personnel in high-stress forward environments are cardiologically 'Full Mission Capable'.",
+          clinician: "Objective data for 'Fit for Sea Duty' and 'Fit for Flight' boards, backed by AUROC 0.9+ sensitivity."
         }}
       >
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 h-full">
           <div className="bg-slate-900 p-6 rounded-2xl flex flex-col justify-center text-center">
-            <span className="text-[10px] font-black text-blue-400 uppercase tracking-widest mb-2">Standard PDM</span>
+            <span className="text-[10px] font-black text-blue-400 uppercase tracking-widest mb-2">Standard Screening</span>
             <div className="text-4xl font-black text-white italic">74%</div>
-            <p className="text-[9px] text-slate-500 mt-2 uppercase">Diagnostic Efficiency</p>
+            <p className="text-[9px] text-slate-500 mt-2 uppercase italic">Asymptomatic Detection Gap</p>
           </div>
           <div className="bg-blue-600 p-6 rounded-2xl flex flex-col justify-center text-center shadow-xl shadow-blue-500/20">
-            <span className="text-[10px] font-black text-white/70 uppercase tracking-widest mb-2">AI-ECG Screening</span>
+            <span className="text-[10px] font-black text-white/70 uppercase tracking-widest mb-2">AI-ECG (Pre-Deployment)</span>
             <div className="text-4xl font-black text-white italic">94%</div>
-            <p className="text-[9px] text-blue-100 mt-2 uppercase">Diagnostic Efficiency</p>
+            <p className="text-[9px] text-blue-100 mt-2 uppercase font-bold">Precision Efficiency</p>
           </div>
         </div>
       </Section>
@@ -293,12 +303,12 @@ export default function App() {
       <Section 
         id="roi" 
         title="Economic Force Multiplier" 
-        coreMessage="One avoided hospitalization for a Senior Officer saves ~$150,000 in logistics and care. AI-ECG is the most cost-effective readiness tool." 
-        vizDescription="ROI comparison showing the massive delta between traditional echo screening costs ($2,500) and AI-ECG ($15)."
+        coreMessage="A single cardiac-related pilot grounding or carrier-deck MEDEVAC exceeds $250k in immediate costs. AI-ECG is the most efficient asset protection tool." 
+        vizDescription="Financial comparison: High-cost specialty cardiac care vs. Software-scalable AI-ECG preventative screening."
         audiencePoints={{
-          management: "Directly reallocates O&M medical budgets from 'Crisis Response' to 'Preventive Readiness'.",
-          readiness: "Optimizes medical resource allocation by screening the entire force at software-led scale.",
-          clinician: "Reduces wait-lists for Echocardiograms by 40% through precise triage of true-positive risks."
+          management: "Dramatically reduces O&M medical expenditures by catching high-acuity risks at the clinic level.",
+          readiness: "Scales to the entire force without additional hardware or high-cost specialty contractor fees.",
+          clinician: "Maximizes usage of existing ECG infrastructure, increasing diagnostic throughput by 400%."
         }}
       >
         <div className="space-y-4">
@@ -307,8 +317,8 @@ export default function App() {
              <span className="text-2xl font-black text-emerald-600">$4.2M+</span>
           </div>
           <div className="p-4 bg-white border border-slate-200 rounded-lg flex justify-between items-center">
-            <span className="text-xs font-bold text-slate-600 uppercase">Per High-Rank MEDEVAC Saved</span>
-            <span className="text-xl font-black text-blue-600">$109,000+</span>
+            <span className="text-xs font-bold text-slate-600 uppercase">Avg Cost of Carrier-to-Shore MEDEVAC</span>
+            <span className="text-xl font-black text-blue-600">$185,000+</span>
           </div>
         </div>
       </Section>
@@ -316,26 +326,26 @@ export default function App() {
       {/* 4. Frictionless Integration */}
       <Section 
         id="integration" 
-        title="Zero-Friction Deployment" 
-        coreMessage="No new hardware needed. Works with existing units already in USFK/USFJ. AI scores sync seamlessly with MHS Genesis." 
-        vizDescription="Digital workflow visualization showing AI-TiA scores appearing on existing ECG printouts and digital records."
+        title="Zero-Friction Command Integration" 
+        coreMessage="No new hardware. Works with existing units in USFK/USFJ clinics. Results appear on existing printouts and MHS Genesis records." 
+        vizDescription="Workflow sync with MHS Genesis and edge medical devices, providing instantaneous AI-risk scoring for front-line medics."
         audiencePoints={{
-          management: "Software-first deployment maximizes utility of currently fielded equipment without capital expense.",
-          readiness: "Enables tele-cardiology between remote clinics and Role 3 medical centers via automated flagging.",
-          clinician: "Maintains current workflows; AI insights appear as a natural supplement to standard interpretation."
+          management: "Software-led deployment means zero capital expenditure (CapEx) for 100% theater coverage.",
+          readiness: "Immediate decision support for medical officers during readiness reviews and annual physicals.",
+          clinician: "Seamless supplemental analysis that integrates with standard GE/Philips/Schiller devices."
         }}
       >
         <div className="bg-slate-900 p-6 rounded-2xl text-white relative overflow-hidden">
           <div className="flex items-center gap-2 mb-4">
             <Zap className="text-yellow-400 fill-yellow-400 w-4 h-4" />
-            <span className="text-[10px] font-black uppercase tracking-widest text-slate-400">Integrated Assessment Panel</span>
+            <span className="text-[10px] font-black uppercase tracking-widest text-slate-400">Tactical Edge Integration</span>
           </div>
-          <div className="text-2xl font-black text-red-400 mb-1">AiTiA-LVSD: High Risk</div>
+          <div className="text-2xl font-black text-red-400 mb-1 tracking-tighter">Critical Asset Risk: HIGH</div>
           <div className="text-4xl font-black italic mb-4">86.2</div>
           <div className="h-1.5 w-full bg-slate-800 rounded-full">
             <div className="h-full bg-red-500 w-[86%] rounded-full shadow-[0_0_10px_rgba(239,68,68,0.5)]"></div>
           </div>
-          <p className="text-[10px] text-slate-500 mt-4 uppercase font-bold">Suggested Action: Role 3 Referral (Priority 1)</p>
+          <p className="text-[10px] text-slate-500 mt-4 uppercase font-bold tracking-tight">Recommendation: Immediate Flight/Sea Duty Suspension for Specialist Review</p>
         </div>
       </Section>
 
@@ -352,10 +362,10 @@ export default function App() {
              <span>HIPAA COMPLIANT</span>
           </div>
           <p className="text-slate-500 text-xs max-w-lg mx-auto leading-relaxed">
-            Medical AI is committed to securing the heart of the force. Protecting high-value command assets and ensuring 100% mission readiness for INDOPACOM.
+            Medical AI: Defending the heart of the INDOPACOM mission. Protecting pilots, crews, and command assets through the world's most advanced cardiac intelligence.
           </p>
           <div className="pt-8 border-t border-slate-900 text-[10px] text-slate-700 font-bold">
-            © 2025 MEDICAL AI. STRATEGIC PROPOSAL FOR USFK/USFJ/INDOPACOM.
+            © 2025 MEDICAL AI. STRATEGIC PROPOSAL FOR USFK/USFJ/INDOPACOM LEADERSHIP.
           </div>
         </div>
       </footer>
