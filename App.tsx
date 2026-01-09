@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { 
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, 
-  PieChart, Pie, Cell, Legend
+  Cell
 } from 'recharts';
 import { 
   Activity, ShieldCheck, DollarSign, Clock, Zap, 
@@ -151,7 +151,7 @@ export default function App() {
               Ready <span className="text-blue-500">Leaders</span><br/>Secure Mission
             </h1>
             <p className="text-lg md:text-xl text-slate-400 leading-relaxed max-w-xl">
-              Focusing on high-value asset protection (Ages 40+) and pre-deployment screening to eliminate non-combat attrition.
+              Protecting high-value command assets (Ages 40+) and pre-identifying non-deployable risks to eliminate mission-critical failures.
             </p>
             <div className="flex flex-wrap gap-4 justify-center md:justify-start">
               <button onClick={() => scrollTo('leadership')} className="px-10 py-5 bg-blue-600 hover:bg-blue-700 text-white font-black rounded-xl transition-all flex items-center gap-2 uppercase tracking-tighter">
@@ -159,11 +159,66 @@ export default function App() {
               </button>
             </div>
           </div>
-          <div className="relative hidden md:block">
-            <img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&q=80&w=800" className="rounded-3xl border border-slate-800 shadow-2xl grayscale hover:grayscale-0 transition-all duration-700" alt="Military Medical Ops" />
-            <div className="absolute -bottom-6 -left-6 bg-blue-600 p-6 rounded-2xl shadow-xl">
-              <Activity className="text-white w-10 h-10" />
-            </div>
+          
+          {/* Tactical ECG UI Replacement */}
+          <div className="relative hidden md:block group">
+             <div className="absolute inset-0 bg-blue-500/20 blur-3xl rounded-full group-hover:bg-blue-500/30 transition-all duration-1000"></div>
+             <div className="relative bg-slate-900 border border-slate-700 rounded-3xl overflow-hidden shadow-2xl p-6 aspect-square flex flex-col">
+                <div className="flex justify-between items-center mb-6">
+                  <div className="flex items-center gap-3">
+                    <div className="w-3 h-3 rounded-full bg-red-500 animate-pulse"></div>
+                    <span className="text-xs font-black tracking-widest text-slate-400 uppercase">AI-ECG ANALYSIS ACTIVE</span>
+                  </div>
+                  <div className="text-[10px] font-bold text-slate-500">INDOPACOM_STRAT_01</div>
+                </div>
+                
+                {/* Waveform Visualization - All leads now animated */}
+                <div className="flex-1 flex flex-col justify-center gap-4">
+                  {[1, 2, 3].map((leadNum, i) => (
+                    <div key={i} className="h-16 relative overflow-hidden bg-slate-950/50 rounded-lg border border-slate-800/50">
+                      <svg className="absolute inset-0 w-full h-full" preserveAspectRatio="none">
+                        <path 
+                          d={`M 0 32 Q 25 32 40 10 T 60 50 T 80 32 L 120 32 T 135 10 T 155 50 T 175 32 L 250 32`} 
+                          fill="none" 
+                          stroke={i === 0 ? "#3b82f6" : "#475569"} 
+                          strokeWidth="2"
+                          className="animate-[dash_4s_linear_infinite]"
+                          style={{
+                            vectorEffect: 'non-scaling-stroke',
+                            strokeDasharray: '10, 5',
+                            animationDelay: `${i * 0.5}s`
+                          }}
+                        />
+                      </svg>
+                      <div className="absolute top-2 left-3 text-[9px] font-black text-slate-600 uppercase">LEAD {leadNum}</div>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="mt-8 bg-blue-600/10 border border-blue-500/20 rounded-2xl p-6">
+                   <div className="flex justify-between items-end mb-2">
+                      <span className="text-[10px] font-black text-blue-400 uppercase tracking-widest">LVSD RISK SCORE (ASSET 40+)</span>
+                      <span className="text-4xl font-black text-white italic">86.2</span>
+                   </div>
+                   <div className="w-full h-2 bg-slate-800 rounded-full overflow-hidden">
+                      <div className="h-full bg-blue-500 w-[86%] shadow-[0_0_15px_rgba(59,130,246,0.6)]"></div>
+                   </div>
+                   <div className="mt-4 flex gap-4">
+                      <div className="flex-1 text-center py-2 bg-red-500/20 border border-red-500/30 rounded-lg">
+                        <span className="text-[9px] font-black text-red-400 uppercase">NON-DEPLOYABLE</span>
+                      </div>
+                      <div className="flex-1 text-center py-2 bg-blue-500 border border-blue-400 rounded-lg">
+                        <span className="text-[9px] font-black text-white uppercase tracking-tighter">URGENT CARE REFERRAL</span>
+                      </div>
+                   </div>
+                </div>
+             </div>
+             
+             {/* Floating Info Tags */}
+             <div className="absolute -top-4 -right-4 bg-slate-800 p-4 rounded-xl border border-slate-700 shadow-xl max-w-[150px]">
+                <p className="text-[10px] font-black text-blue-400 uppercase mb-1 tracking-tighter">Command Asset</p>
+                <p className="text-[9px] text-slate-300 leading-tight">Senior Officer Profile Identified</p>
+             </div>
           </div>
         </div>
       </section>
@@ -304,6 +359,15 @@ export default function App() {
           </div>
         </div>
       </footer>
+
+      {/* Custom styles for waveform animation */}
+      <style>{`
+        @keyframes dash {
+          to {
+            stroke-dashoffset: -100;
+          }
+        }
+      `}</style>
     </div>
   );
 }
